@@ -36,20 +36,27 @@ void divfind() { for(int i=1; i<N; i++) { divisors[i].push_back(i); for(int j=2*
 
 
 void solve(){
-    int n;
-    cin >> n;
-    vector<int> dp(n+1, 0); 
-    dp[0]=1; 
+   int n,x;
+   cin>>n>>x;
+   vector<int> dp(x+1); // 
+   dp[0]=1;
+   vector<int> c;
 
-    for(int i=1;i<=n;i++){
-        for(int j=1;j<=6;j++){
-            if(j<=i){
-               dp[i]=(dp[i]+dp[i-j])%MOD; 
-            }
+   for(int i=0;i<n;i++){
+    int x;
+    cin>>x;
+    c.push_back(x);
+   }
+
+   for(int i=1;i<=x;i++){
+    for(int j=0;j<n;j++){
+        if(i>=c[j]){
+         dp[i]=(dp[i-c[j]]+dp[i])%MOD;
         }
     }
+   }
 
-    cout << dp[n] << endl; 
+  cout<<dp[x]<<endl;
 }
 
 signed main(){
